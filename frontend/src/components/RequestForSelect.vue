@@ -26,6 +26,8 @@ const modelValue = defineModel();
     Select your reason
    </option>
    <option value="Registering a new business">Registering a new business</option>
+   <option value="School Purposes">School Purposes</option>
+   <option value="For Identification">For Identification</option>
    <option value="Renewing a business">Renewing a business</option>
    <option value="Applying for a job">Applying for a job</option>
    <option value="Purchasing a house">Purchasing a house</option>

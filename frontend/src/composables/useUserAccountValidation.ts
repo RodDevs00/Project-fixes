@@ -22,13 +22,8 @@ const UserDataKeys = z
    .regex(/^[A-Z].*/, { message: "Your surname must start with capital letter" })
    .min(3, { message: "Your name must be 3 or more characters long" }),
   sex: z.string({ required_error: "Your sex gender is required" }).min(3, { message: "Your sex gender is required" }),
-//   civil_status: z.string({ required_error: "Your civil status is required" }).min(3, { message: "Your civil status is required" }),
-//   citizenship: z
-//    .string({ required_error: "Your citizenship is required" })
-//    .regex(/^[A-Z].*/, { message: "Your citizenship must start with capital letter" })
-//    .min(3, { message: "Your citizenship is required" }),
 
-  baranggay: z.string().min(1, { message: "Your baranggay is required" }),
+  
   email: z.string().email({ message: "Please enter a valid email" }),
   password: z.string().min(8, { message: "Your password must be 8 or more characters long" }),
   confirm_password: z.string().min(8, { message: "Please confirm your new password" }),
@@ -49,9 +44,6 @@ export function useUserAccountValidation() {
   middle_name: "",
   surname: "",
   sex: "",
-//   civil_status: "",
-//   citizenship: "",
-  baranggay: "",
   email: "",
   password: "",
   confirm_password: "",
@@ -64,7 +56,6 @@ export function useUserAccountValidation() {
   middle_name: undefined,
   surname: undefined,
   sex: undefined,
-  baranggay: undefined,
   email: undefined,
   password: undefined,
   confirm_password: undefined,

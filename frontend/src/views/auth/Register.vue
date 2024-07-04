@@ -74,14 +74,6 @@ async function submitForm() {
       </div>
       <div class="flex flex-col gap-3">
       
-      
-     
-      
-       <BrgySelect
-        v-model="userAccountData.baranggay"
-        :errors="userAccountDataErrors.baranggay"
-        :disabled="is_loading"
-       />
        <PrimaryInput
         v-model="userAccountData.email"
         type="email"

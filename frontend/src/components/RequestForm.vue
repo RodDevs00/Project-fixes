@@ -5,9 +5,14 @@ import { CedulaRequestService } from "@/modules/cedula-requests/services";
 import FileInput from "@components/FileInput.vue";
 import RequestForSelect from "@components/RequestForSelect.vue";
 import CedulaTypeSelect from "@components/CedulaTypeSelect.vue";
+import PrimaryInput from "@components/PrimaryInput.vue";
+import GenderSelect from "@components/GenderSelect.vue";
+import CivilStatusSelect from "@components/CivilStatusSelect.vue";
+import BrgySelect from "@/components/BrgySelect.vue";
 import { toast } from "vue3-toastify";
 
 const request_data = ref<any>({
+ first_name: "",
  reason_of_request: "",
  type_of_request: "",
  government_id: null,
@@ -144,6 +149,8 @@ const emits = defineEmits<{
   class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10 flex flex-col gap-3"
  >
   <h5 class="font-semibold text-base lg:text-xl">Cedula Request Form</h5>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+
   <div class="max-w-lg flex flex-col gap-3">
    <RequestForSelect
     v-model="request_data.reason_of_request"
@@ -153,14 +160,50 @@ const emits = defineEmits<{
     v-model="request_data.type_of_request"
     :disabled="is_loading"
    />
-   <FileInput
-    v-model="request_data.government_id"
-    id="valid-gov-id"
-    name="valid-gov-id"
-    label="1 Valid Government-Issued ID"
-    :disabled="is_loading"
-   />
-   <FileInput
+
+   <PrimaryInput
+        label="Height"
+        type="text"
+        id="first_name"
+        placeholder=""
+        :disabled="is_loading"
+       />
+       <PrimaryInput
+        label="Weight"
+        type="text"
+        id="first_name"
+        placeholder=""
+        :disabled="is_loading"
+       />
+       <PrimaryInput
+        label="Profession/Occupation/Business"
+        type="text"
+        id="first_name"
+        placeholder=""
+        :disabled="is_loading"
+       />
+
+       <CivilStatusSelect
+        label="Civil status"
+         :disabled="is_loading"
+       />
+       <PrimaryInput
+        label="Citizenship"
+        type="text"
+        id="first_name"
+        placeholder=""
+        :disabled="is_loading"
+       />
+
+    <FileInput
+        v-model="request_data.government_id"
+        id="valid-gov-id"
+        name="valid-gov-id"
+        label="1 Valid Government-Issued ID"
+        :disabled="is_loading"
+    />
+  
+   <!-- <FileInput
     v-model="request_data.community_tax_declaration_form"
     id="tax-declaration-form"
     name="tax-declaration-form"
@@ -174,21 +217,21 @@ const emits = defineEmits<{
     name="proof-of-income"
     label="Proof of Income"
     :disabled="is_loading"
-   />
-   <FileInput
+   /> -->
+   <!-- <FileInput
     v-if="request_data.type_of_request === 'Individual'"
     v-model="request_data.payslip"
     id="payslip"
     name="payslip"
     label="Payslip"
     :disabled="is_loading"
-   />
+   /> -->
    <FileInput
     v-if="request_data.type_of_request === 'Business Owner'"
     v-model="request_data.business_tax_declaration_form"
     id="business_tax_declaration_form"
     name="business_tax_declaration_form"
-    label="Approved business tax declaration as evaluated by the City Treasurer's office"
+    label="Approved business tax declaration as evaluated by the LGU Treasurer's office"
     :disabled="is_loading"
    />
    <div
@@ -256,6 +299,81 @@ const emits = defineEmits<{
     />
    </div>
   </div>
+
+
+  <div class="max-w-lg flex flex-col gap-3">
+   
+   <!-- <CedulaTypeSelect
+    v-model="request_data.type_of_request"
+    :disabled="is_loading"
+   /> -->
+  
+   <PrimaryInput
+        v-model="request_data.first_name"
+        label="First name"
+        type="text"
+        id="first_name"
+        placeholder=""
+        :disabled="is_loading"
+       />
+       <PrimaryInput
+        label="Middle name (Optional)"
+        type="text"
+        id="first_name"
+        placeholder=""
+        :disabled="is_loading"
+       />
+       <PrimaryInput
+        label="Last name"
+        type="text"
+        id="first_name"
+        placeholder=""
+        :disabled="is_loading"
+       />
+       <PrimaryInput
+       
+        type="date"
+        id="pick_up_date"
+        label="Date of birth"
+        placeholder=""
+        :disabled="is_loading"
+    />
+
+    <PrimaryInput
+        label="Place of birth"
+        type="text"
+        id="first_name"
+        placeholder=""
+        :disabled="is_loading"
+       />
+
+       <GenderSelect
+        label="Gender"
+        id="first_name"
+        placeholder="Select"
+        :disabled="is_loading"
+       />
+
+       <BrgySelect
+       label="Barangay"
+        placeholder="Select"
+        :disabled="is_loading"
+        />
+
+       <PrimaryInput
+        label="Tax Identification Number (Optional)"
+        type="text"
+        id="first_name"
+        placeholder=""
+        :disabled="is_loading"
+       />
+   
+   
+  </div>
+
+
+  </div>
+  
   <div class="inline-flex items-center gap-3">
    <button
     type="button"
@@ -266,7 +384,7 @@ const emits = defineEmits<{
     <p class="text-sm font-medium leading-none text-white">Cancel</p>
    </button>
    <button
-    :disabled="request_data.is_representative ? !allPropertiesNotNull || !completedForm : !allPropertiesNotNull || is_loading"
+   
     type="submit"
     class="mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded shadow active:scale-95 transition-all disabled:bg-gray-500 disabled:cursor-not-allowed"
    >
@@ -274,4 +392,5 @@ const emits = defineEmits<{
    </button>
   </div>
  </form>
+ 
 </template>

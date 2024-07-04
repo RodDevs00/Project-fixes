@@ -110,7 +110,6 @@ class AuthController extends Controller
                 'middle_name'               => $request->middle_name,
                 'surname'                   => $request->surname,
                 'sex'                       => $request->sex,
-                'baranggay'                 => $request->baranggay,
                 
                 'user_id'                   => $newAccount->id
             ]);
@@ -131,8 +130,8 @@ class AuthController extends Controller
                 'middle_name'               => $request->middle_name,
                 'surname'                   => $request->surname,
                 'sex'                       => $request->sex,
-                'civil_status'              => $request->civil_status,
-                'baranggay'                 => $request->baranggay,
+              
+               
             ]);
     
             return response()->json(['success' => 'Account updated successfully'], 200);

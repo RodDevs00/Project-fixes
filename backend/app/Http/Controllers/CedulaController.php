@@ -140,20 +140,25 @@ class CedulaController extends Controller
     }
 
     public function uploadCedulaRequirements(Request $request, $id)
-    {
-        try{
-            $ext      = $request->file->extension();
-            $fileName = random_int(1, 9999999999) . '.' . $ext;
-            $request->file->move( storage_path('app/public/cedula/requirements/request_'.$id) , $fileName);
-            
-            $doc                    = new CedulaRequirement();
-            $doc->file_name         = $fileName;
-            $doc->file_path         = env('APP_URL').'/storage/cedula/requirements/request_'.$id.'/'.$fileName;
-            $doc->cedula_request_id = $id;
-            $doc->save();
-            return response()->json(['success'=>'File uploaded successfully.'], 200);
-        } catch (\Exception $e) {
-            return response()->json(['error' => "Upload failed, try again later."], 500);
-        }
+{
+    try {
+        $file = $request->file('file'); // Ensure 'file' is the correct input name
+        $ext = $file->extension();
+        $fileName = random_int(1, 9999999999) . '.' . $ext;
+        $filePath = 'cedula/requirements/request_' . $id . '/' . $fileName;
+
+        // Store the file using Laravel's Storage facade
+        Storage::disk('public')->put($filePath, file_get_contents($file));
+
+        $doc = new CedulaRequirement();
+        $doc->file_name = $fileName;
+        $doc->file_path = Storage::url($filePath);
+        $doc->cedula_request_id = $id;
+        $doc->save();
+
+        return response()->json(['success' => 'File uploaded successfully.'], 200);
+    } catch (\Exception $e) {
+        return response()->json(['error' => "Upload failed, try again later."], 500);
     }
+}
 }
