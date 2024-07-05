@@ -62,6 +62,20 @@ class CedulaController extends Controller
                 'user_id'       => auth()->user()->id,
                 'type'          => $request->type,
                 'request_uuid'  => random_int(1, 9999999999),
+                'first_name'    => $request->first_name,
+                'height'    => $request->height,
+                'weight'    => $request->weight,
+                'profession_occupation_business' => $request->profession_occupation_business,
+                'last_name'    => $request->last_name,
+                'middle_name'    => $request->middle_name,
+                'sex'    => $request->sex,
+                'place_of_birth' => $request->place_of_birth,
+                'date_of_birth' => $request->date_of_birth,
+                'citizenship' => $request->citizenship,
+                'civil_status' => $request->civil_status,
+                'tax_identification_number' => $request->tax_identification_number,
+                'barangay_selection' => $request->barangay_selection,
+                
             ]);
             
             return response()->json(['success' => 'Submitted! Your request will be validated by our staff.', 'cedula_req_id' => $newRequest->id], 200);

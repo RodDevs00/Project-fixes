@@ -13,8 +13,20 @@ import { toast } from "vue3-toastify";
 
 const request_data = ref<any>({
  first_name: "",
+ middle_name: "",
+ last_name: "",
  reason_of_request: "",
+ height: "",
+ weight: "",
+ sex: "",
+ tax_identification_number: "",
+ barangay_selection: "",
+ civil_status: "",
+ profession_occupation_business: "",
  type_of_request: "",
+ place_of_birth: "",
+ date_of_birth: "",
+ citizenship: "",
  government_id: null,
  community_tax_declaration_form: null,
  business_tax_declaration_form: null,
@@ -105,6 +117,20 @@ async function submitRequest() {
  is_loading.value = true;
  const res = await CedulaRequestService.new().createNewCedulaRequest({
   type: request_data.value.reason_of_request,
+  first_name: request_data.value.first_name,
+  middle_name: request_data.value.middle_name,
+  last_name: request_data.value.last_name,
+  tax_identification_number: request_data.value.tax_identification_number,
+  sex: request_data.value.sex,
+  height: request_data.value.height,
+  weight: request_data.value.weight,
+  profession_occupation_business: request_data.value.profession_occupation_business,
+  civil_status: request_data.value.civil_status,
+  barangay_selection: request_data.value.barangay_selection,
+  citizenship: request_data.value.citizenship,
+  place_of_birth: request_data.value.place_of_birth,
+  date_of_birth: request_data.value.date_of_birth,
+
  });
 
  if (res.status === 200) {
@@ -162,6 +188,7 @@ const emits = defineEmits<{
    />
 
    <PrimaryInput
+      v-model="request_data.height"
         label="Height"
         type="text"
         id="first_name"
@@ -169,6 +196,7 @@ const emits = defineEmits<{
         :disabled="is_loading"
        />
        <PrimaryInput
+        v-model="request_data.weight"
         label="Weight"
         type="text"
         id="first_name"
@@ -176,6 +204,7 @@ const emits = defineEmits<{
         :disabled="is_loading"
        />
        <PrimaryInput
+          v-model="request_data.profession_occupation_business"
         label="Profession/Occupation/Business"
         type="text"
         id="first_name"
@@ -184,10 +213,12 @@ const emits = defineEmits<{
        />
 
        <CivilStatusSelect
+       v-model="request_data.civil_status"
         label="Civil status"
          :disabled="is_loading"
        />
        <PrimaryInput
+       v-model="request_data.citizenship"
         label="Citizenship"
         type="text"
         id="first_name"
@@ -317,6 +348,7 @@ const emits = defineEmits<{
         :disabled="is_loading"
        />
        <PrimaryInput
+       v-model="request_data.middle_name"
         label="Middle name (Optional)"
         type="text"
         id="first_name"
@@ -324,6 +356,7 @@ const emits = defineEmits<{
         :disabled="is_loading"
        />
        <PrimaryInput
+       v-model="request_data.last_name"
         label="Last name"
         type="text"
         id="first_name"
@@ -331,7 +364,7 @@ const emits = defineEmits<{
         :disabled="is_loading"
        />
        <PrimaryInput
-       
+       v-model="request_data.date_of_birth"
         type="date"
         id="pick_up_date"
         label="Date of birth"
@@ -340,6 +373,7 @@ const emits = defineEmits<{
     />
 
     <PrimaryInput
+    v-model="request_data.place_of_birth"
         label="Place of birth"
         type="text"
         id="first_name"
@@ -348,6 +382,7 @@ const emits = defineEmits<{
        />
 
        <GenderSelect
+        v-model="request_data.sex"
         label="Gender"
         id="first_name"
         placeholder="Select"
@@ -355,12 +390,14 @@ const emits = defineEmits<{
        />
 
        <BrgySelect
+       v-model="request_data.barangay_selection"
        label="Barangay"
         placeholder="Select"
         :disabled="is_loading"
         />
 
        <PrimaryInput
+        v-model="request_data.tax_identification_number"
         label="Tax Identification Number (Optional)"
         type="text"
         id="first_name"

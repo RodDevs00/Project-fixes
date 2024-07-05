@@ -10,7 +10,7 @@ class CedulaRequest extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'request_uuid', 'type', 'status', 'staff_comment', 'pick_up_date', 'pick_up_time'
+        'user_id', 'request_uuid', 'type','first_name','height','weight','sex','profession_occupation_business','last_name','middle_name','barangay_selection','tax_identification_number','civil_status','citizenship','date_of_birth','place_of_birth','status', 'staff_comment', 'pick_up_date', 'pick_up_time'
     ];
 
     public function owner() 
