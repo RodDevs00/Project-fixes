@@ -94,14 +94,52 @@ onUnmounted(() => (document.body.style.overflowY = "auto"));
   <UserInfo v-if="selected_user" :user-status="selected_user.account.account_activated" />
   <div v-else class="fixed inset-0 z-[100] flex justify-center items-center bg-black bg-opacity-40 p-5" @click.self="emits('closeModal', false)">
     <form class="p-7 w-full max-w-lg bg-white shadow rounded-lg max-h-[90vh] overflow-y-auto">
-      <h5 class="text-center font-semibold">Cedula Request #{{ props.requestInfo.request_uuid }}</h5>
-      <p class="mt-4 text-gray-500 text-opacity-50">Click a file to view or download</p>
-      <p class="text-sm mt-3">Your submitted requirements:</p>
-      <ul>
-        <li v-for="(item, index) in props.requestInfo.requirements" :key="index" class="hover:text-blue-500 w-fit hover:cursor-pointer hover:underline transition-all" @click="openInNewTab(`${BASE_URL}${item.file_path}`)">
-          {{ item.file_name }}
-        </li>
-      </ul>
+      <h5 class="text-center font-semibold pb-5">Cedula Request #{{ props.requestInfo.request_uuid }}</h5>
+     
+      <ul class="grid grid-cols-2 gap-4">
+      <!-- User Information List Items -->
+      <li v-if="props.requestInfo.first_name" class="hover:text-blue-500 w-fit hover:cursor-pointer transition-all">
+        <strong>First name:</strong> {{ props.requestInfo.first_name }}
+      </li>
+      <li v-if="props.requestInfo.middle_name" class="hover:text-blue-500 w-fit hover:cursor-pointer transition-all">
+        <strong>Middle name:</strong> {{ props.requestInfo.middle_name }}
+      </li>
+      <li v-if="props.requestInfo.last_name" class="hover:text-blue-500 w-fit hover:cursor-pointer transition-all">
+        <strong>Last name:</strong> {{ props.requestInfo.last_name }}
+      </li>
+      <li v-if="props.requestInfo.sex" class="hover:text-blue-500 w-fit hover:cursor-pointer transition-all">
+       <strong>Sex:</strong> {{ props.requestInfo.sex }}
+      </li>
+      <li v-if="props.requestInfo.date_of_birth" class="hover:text-blue-500 w-fit hover:cursor-pointer transition-all">
+        <strong>Date of birth:</strong> {{ props.requestInfo.date_of_birth }}
+      </li>
+      <li v-if="props.requestInfo.place_of_birth" class="hover:text-blue-500 w-fit hover:cursor-pointer transition-all">
+        <strong>Place of birth:</strong> {{ props.requestInfo.place_of_birth }}
+      </li>
+      <li v-if="props.requestInfo.civil_status" class="hover:text-blue-500 w-fit hover:cursor-pointer transition-all">
+        <strong>Civil status:</strong> {{ props.requestInfo.civil_status }}
+      </li>
+      <li v-if="props.requestInfo.citizenship" class="hover:text-blue-500 w-fit hover:cursor-pointer transition-all">
+        <strong>Citizenship:</strong> {{ props.requestInfo.citizenship }}
+      </li>
+      <li v-if="props.requestInfo.barangay_selection" class="hover:text-blue-500 w-fit hover:cursor-pointer transition-all">
+        <strong>Barangay:</strong> {{ props.requestInfo.barangay_selection }}
+      </li>
+      <li v-if="props.requestInfo.profession_occupation_business" class="hover:text-blue-500 w-fit hover:cursor-pointer transition-all">
+        <strong>Profession/Business:</strong> {{ props.requestInfo.profession_occupation_business }}
+      </li>
+      <li v-if="props.requestInfo.tax_identification_number" class="hover:text-blue-500 w-fit hover:cursor-pointer transition-all">
+        <strong>Tax Identification Number:</strong> {{ props.requestInfo.tax_identification_number }}
+      </li>
+    </ul>
+
+    <p class="mt-4 text-gray-500 text-opacity-50">Click a file to view or download</p>
+    <p class="text-md mt-3"><strong>Your submitted requirements:</strong></p>
+    <ul>
+      <li v-for="(item, index) in props.requestInfo.requirements" :key="index" class="hover:text-blue-500 w-fit hover:cursor-pointer hover:underline transition-all" @click="openInNewTab(`${BASE_URL}${item.file_path}`)">
+        {{ item.file_name }}
+      </li>
+    </ul>
       <div class="my-5 flex flex-col gap-2">
         <PrimaryInput v-model="cedula_info.pick_up_date" type="date" id="pick_up_date" label="Pick up date and time" placeholder="" :disabled="is_loading" />
         <PrimaryInput v-model="cedula_info.pick_up_time" type="time" id="pick_up_time" placeholder="" :disabled="is_loading" />
