@@ -18,6 +18,7 @@ const request_data = ref<any>({
  reason_of_request: "",
  height: "",
  weight: "",
+ salary: "",
  sex: "",
  tax_identification_number: "",
  barangay_selection: "",
@@ -28,6 +29,7 @@ const request_data = ref<any>({
  date_of_birth: "",
  citizenship: "",
  government_id: null,
+ selfie_government_id: null,
  community_tax_declaration_form: null,
  business_tax_declaration_form: null,
  proof_of_income: null,
@@ -98,6 +100,7 @@ watch(
 
 function resetForm() {
  request_data.value.government_id = null;
+ request_data.value.selfie_government_id = null;
  request_data.value.community_tax_declaration_form = null;
  request_data.value.business_tax_declaration_form = null;
  request_data.value.proof_of_income = null;
@@ -124,6 +127,7 @@ async function submitRequest() {
   sex: request_data.value.sex,
   height: request_data.value.height,
   weight: request_data.value.weight,
+  salary: request_data.value.salary,
   profession_occupation_business: request_data.value.profession_occupation_business,
   civil_status: request_data.value.civil_status,
   barangay_selection: request_data.value.barangay_selection,
@@ -136,6 +140,7 @@ async function submitRequest() {
  if (res.status === 200) {
   const files: File[] = [
    request_data.value.government_id,
+   request_data.value.selfie_government_id,
    request_data.value.community_tax_declaration_form,
    request_data.value.business_tax_declaration_form,
    request_data.value.proof_of_income,
@@ -203,6 +208,16 @@ const emits = defineEmits<{
         placeholder=""
         :disabled="is_loading"
        />
+
+       <PrimaryInput
+        v-model="request_data.salary"
+        label="Salary"
+        type="text"
+        id="salary"
+        placeholder=""
+        :disabled="is_loading"
+       />
+
        <PrimaryInput
           v-model="request_data.profession_occupation_business"
         label="Profession/Occupation/Business"
@@ -231,6 +246,14 @@ const emits = defineEmits<{
         id="valid-gov-id"
         name="valid-gov-id"
         label="1 Valid Government-Issued ID"
+        :disabled="is_loading"
+    />
+
+    <FileInput
+        v-model="request_data.selfie_government_id"
+        id="selfie-valid-gov-id"
+        name="selfie-valid-gov-id"
+        label="Selfie with 1 Valid Government-Issued ID"
         :disabled="is_loading"
     />
   

@@ -134,10 +134,15 @@ onUnmounted(() => (document.body.style.overflowY = "auto"));
     </ul>
 
     <p class="mt-4 text-gray-500 text-opacity-50">Click a file to view or download</p>
-    <p class="text-md mt-3"><strong>Your submitted requirements:</strong></p>
+    <p class="text-md mt-3"><strong>Submitted requirements:</strong></p>
     <ul>
-      <li v-for="(item, index) in props.requestInfo.requirements" :key="index" class="hover:text-blue-500 w-fit hover:cursor-pointer hover:underline transition-all" @click="openInNewTab(`${BASE_URL}${item.file_path}`)">
-        {{ item.file_name }}
+      <li
+        v-for="(item, index) in props.requestInfo.requirements"
+        :key="index"
+        class="hover:text-blue-500 w-fit hover:cursor-pointer hover:underline transition-all"
+        @click="openInNewTab(`${BASE_URL}${item.file_path}`)"
+      >
+        {{ index === 0 ? '1 Valid Government ID' : index === 1 ? 'Selfie with Valid Government ID': index === 2 ? '1 Valid Government-Issued ID of Representative' : index === 3 ? 'Authorization Letter' : index === 4 ? 'Photocopy of the valid government-issued ID of the person or business owner being represented'  : item.file_name  }}
       </li>
     </ul>
       <div class="my-5 flex flex-col gap-2">

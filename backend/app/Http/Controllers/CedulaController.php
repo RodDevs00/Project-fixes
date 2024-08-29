@@ -65,6 +65,7 @@ class CedulaController extends Controller
                 'first_name'    => $request->first_name,
                 'height'    => $request->height,
                 'weight'    => $request->weight,
+                'salary'    => $request->salary,
                 'profession_occupation_business' => $request->profession_occupation_business,
                 'last_name'    => $request->last_name,
                 'middle_name'    => $request->middle_name,
