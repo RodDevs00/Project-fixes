@@ -101,24 +101,28 @@ class AuthController extends Controller
         try {
             $newAccount = User::create([
                 'email'     => $request->email,
-                'password'  => $request->password,
-                'user_role_id'   => 2,
-            ]);
-            
-            UserInfo::create([
-                'first_name'                => $request->first_name,
-                'middle_name'               => $request->middle_name,
-                'surname'                   => $request->surname,
-                'sex'                       => $request->sex,
-                
-                'user_id'                   => $newAccount->id
+                'password'  => bcrypt($request->password), // Encrypt password
+                'user_role_id' => 2,
             ]);
     
-            return response()->json(['success' => 'Submitted! Administrator will validate your registration.'], 200);
+            // Send email verification link
+            $newAccount->sendEmailVerificationNotification();
+    
+            UserInfo::create([
+                'first_name' => $request->first_name,
+                'middle_name' => $request->middle_name,
+                'surname' => $request->surname,
+                'sex' => $request->sex,
+                'user_id' => $newAccount->id
+            ]);
+    
+            return response()->json(['success' => 'Submitted! Check your email for verification.'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => "Registration failed, try again later."], 500);
         }
     }
+    
+   
 
     public function updateAccount($id, Request $request)
     {

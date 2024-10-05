@@ -6,7 +6,7 @@ import HomeNavbar from "@components/HomeNavbar.vue";
 import HomeFooter from "@components/HomeFooter.vue";
 import PrimaryButton from "@/components/PrimaryButton.vue";
 import PrimaryInput from "@/components/PrimaryInput.vue";
-import BrgySelect from "@/components/BrgySelect.vue";
+// import BrgySelect from "@/components/BrgySelect.vue";
 import GenderSelect from "@/components/GenderSelect.vue";
 // import CivilStatusSelect from "@/components/CivilStatusSelect.vue";
 

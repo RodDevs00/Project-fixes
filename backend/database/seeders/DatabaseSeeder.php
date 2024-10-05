@@ -24,10 +24,12 @@ class DatabaseSeeder extends Seeder
          */
         \App\Models\User::create([
             'email' => 'admin@admin.com',
-            'password' => 'admin',
+            'password' => bcrypt('admin'), // Make sure the password is hashed
             'user_role_id'  => 1,
-            'account_activated' => true
+            'account_activated' => true,
+            'email_verified_at' => now() // Set the email as verified
         ]);
+        
 
         // CREATE DUMMY USERS
         \App\Models\User::factory(10)->create();
